@@ -32,6 +32,13 @@ class DatabaseConnection {
 
   // Método para conectar a la base de datos
   public connect(): void {
+    if (this.connected) {
+      console.log('%cYa estábamos conectados a la base de datos', COLORS.red);
+      return;
+    }
+
+    this.connected = true;
+    console.log('%cNueva conexión a la base de datos', COLORS.green);
     // Completar: si no está conectado, mostrar mensaje de conexión
     if (!this.connected) {
       this.connected = true;
@@ -64,6 +71,7 @@ function main() {
   console.log("Son iguales:", db1 === db2); // Debería mostrar true
 
   db1.disconnect(); // Debería cerrar la conexión
+  db2.disconnect();
 
   db2.connect(); // Ahora debería conectar de nuevo, ya que se cerró la anterior
 }

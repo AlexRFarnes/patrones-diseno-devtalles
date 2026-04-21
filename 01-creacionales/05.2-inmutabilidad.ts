@@ -23,6 +23,12 @@ interface PlayerProps {
   level: number;
 }
 
+interface PlayerProps {
+  name: string;
+  score: number;
+  level: number;
+}
+
 // 1. Clase Player inmutable
 class Player {
   constructor(readonly props: PlayerProps) {}

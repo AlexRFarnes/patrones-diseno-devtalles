@@ -12,6 +12,8 @@
  * https://refactoring.guru/es/design-patterns/abstract-factory
  */
 
+import { COLORS } from '../helpers/colors.ts';
+
 /**
  * !Instrucciones:
  	1.Completen las Clases de Productos:
@@ -75,7 +77,6 @@ interface VehicleFactory {
 }
 
 // 4. Clases Concretas de Fábricas
-
 class ElectricVehicleFactory implements VehicleFactory {
   // Implementación de los métodos createVehicle y createEngine
   createVehicle(): Vehicle {
@@ -88,6 +89,12 @@ class ElectricVehicleFactory implements VehicleFactory {
 }
 
 class GasVehicleFactory implements VehicleFactory {
+  createVehicle(): Vehicle {
+    return new GasCar();
+  }
+  createEngine(): Engine {
+    return new GasEngine();
+  }
   // Implementación de los métodos createVehicle y createEngine
   createVehicle(): Vehicle {
     return new GasCar();

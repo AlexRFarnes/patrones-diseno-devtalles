@@ -10,6 +10,8 @@
  * https://refactoring.guru/es/design-patterns/prototype
  */
 
+import { COLORS } from '../helpers/colors.ts';
+
 class Pokemon {
   // name: string;
   // type: string;
