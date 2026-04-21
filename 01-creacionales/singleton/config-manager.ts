@@ -6,7 +6,7 @@ class ConfigManager {
   }
 
   public getConfig(key: string): string | null {
-    return this.config[key];
+    return this.config[key] ?? null;
   }
 
   public getAllConfig(): Record<string, string> {

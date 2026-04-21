@@ -27,24 +27,23 @@ class Document {
 
   displayInfo() {
     console.log(`
-      Title: ${this.title}
-      Content: ${this.content}
-      Author: ${this.author}
-    `);
+        Title: ${this.title}
+        Content: ${this.content}
+        Author: ${this.author}
+        `);
   }
 }
 
 function main() {
-  const document1 = new Document('Cotización', '500 dólares', 'Fernando');
+  const doc1 = new Document("Cotizacion", "500 dolares", "Alex");
+  console.log({ doc1 });
+  doc1.displayInfo();
 
-  console.log({ document1 });
-  document1.displayInfo();
+  const doc2 = doc1.clone();
+  doc2.title = "Nueva cotizacion";
 
-  const document2 = document1.clone();
-  document2.title = 'Nueva cotización';
-
-  console.log({ document2 });
-  document2.displayInfo();
+  console.log({ doc2 });
+  doc2.displayInfo();
 }
 
 main();

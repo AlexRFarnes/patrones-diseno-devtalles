@@ -42,26 +42,30 @@ interface Engine {
 // 2. Clases Concretas de Productos
 
 class ElectricCar implements Vehicle {
+  // Implementación del método assemble
   assemble(): void {
-    console.log('Ensamblando un auto %celéctrico', COLORS.blue);
+    console.log("Ensamblando un auto eléctrico");
   }
 }
 
 class GasCar implements Vehicle {
+  // Implementación del método assemble
   assemble(): void {
-    console.log('Ensamblando un auto de %ccombustión', COLORS.brown);
+    console.log("Ensamblando un auto de combustión");
   }
 }
 
 class ElectricEngine implements Engine {
+  // Implementación del método start
   start(): void {
-    console.log('Arrancando motor %celéctrico', COLORS.blue);
+    console.log("Arrancando motor eléctrico");
   }
 }
 
 class GasEngine implements Engine {
+  // Implementación del método start
   start(): void {
-    console.log('Arrancando motor de %ccombustión', COLORS.brown);
+    console.log("Arrancando motor de combustión");
   }
 }
 
@@ -74,6 +78,7 @@ interface VehicleFactory {
 
 // 4. Clases Concretas de Fábricas
 class ElectricVehicleFactory implements VehicleFactory {
+  // Implementación de los métodos createVehicle y createEngine
   createVehicle(): Vehicle {
     return new ElectricCar();
   }
@@ -91,6 +96,13 @@ class GasVehicleFactory implements VehicleFactory {
     return new GasEngine();
   }
   // Implementación de los métodos createVehicle y createEngine
+  createVehicle(): Vehicle {
+    return new GasCar();
+  }
+
+  createEngine(): Engine {
+    return new GasEngine();
+  }
 }
 
 // 5. Código Cliente
@@ -104,8 +116,8 @@ function main(factory: VehicleFactory) {
 }
 
 // Pruebas
-console.log('Creando vehículo eléctrico:');
+console.log("Creando vehículo eléctrico:");
 main(new ElectricVehicleFactory());
 
-console.log('\nCreando vehículo de combustión:');
+console.log("\nCreando vehículo de combustión:");
 main(new GasVehicleFactory());

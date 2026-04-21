@@ -13,21 +13,21 @@
  * https://refactoring.guru/es/design-patterns/builder
  */
 
-import { COLORS } from '../helpers/colors.ts';
+import { COLORS } from "../helpers/colors.ts";
 
 class Computer {
-  public cpu: string = 'cpu - not defined';
-  public ram: string = 'ram - not defined';
-  public storage: string = 'storage - not defined';
+  public cpu: string = "cpu - no defined";
+  public ram: string = "ram - no defined";
+  public storage: string = "storage - no defined";
   public gpu?: string;
 
-  displayConfiguration() {
-    console.log(`Configuración de la computadora
-      CPU: ${this.cpu}  
-      RAM: ${this.ram}  
-      Almacenamiento: ${this.storage}  
-      GPU: ${this.gpu ?? 'No tiene GPU'}  
-      `);
+  displayConfiguration(): void {
+    console.log(`Configuracion de a computador: 
+      CPU: ${this.cpu}
+      RAM: ${this.ram}
+      STORAGE: ${this.storage}
+      GPU: ${this.gpu ?? "No tiene GPU"}
+    `);
   }
 }
 
@@ -38,12 +38,12 @@ class ComputerBuilder {
     this.computer = new Computer();
   }
 
-  setCPU(cpu: string): ComputerBuilder {
+  setCpu(cpu: string): ComputerBuilder {
     this.computer.cpu = cpu;
     return this;
   }
 
-  setRAM(ram: string): ComputerBuilder {
+  setRam(ram: string): ComputerBuilder {
     this.computer.ram = ram;
     return this;
   }
@@ -53,34 +53,32 @@ class ComputerBuilder {
     return this;
   }
 
-  setGPU(gpu: string): ComputerBuilder {
+  setGpu(gpu: string): ComputerBuilder {
     this.computer.gpu = gpu;
     return this;
   }
 
-  build() {
+  build(): Computer {
     return this.computer;
   }
 }
 
 function main() {
-  const basicComputer: Computer = new ComputerBuilder()
-    .setCPU('Intel Core 2 Dúo')
-    .setRAM('4GB')
-    .setStorage('256GB')
+  const basicComputer = new ComputerBuilder()
+    .setCpu("Intel Core i5")
+    .setRam("8GB")
+    .setStorage("512GB")
     .build();
-
-  console.log('%cComputadora básica:', COLORS.blue);
+  console.log("%cBasic Computer: ", COLORS.blue);
   basicComputer.displayConfiguration();
 
   const gamingComputer = new ComputerBuilder()
-    .setCPU('Intel i9')
-    .setRAM('64GB')
-    .setStorage('1TB M2')
-    .setGPU('Nvidia RTX 5090')
+    .setCpu("AMD Ryzen 9 9900X")
+    .setRam("64GB")
+    .setStorage("1TB")
+    .setGpu("NVIDIA RTX 5090")
     .build();
-
-  console.log('%c\nComputadora gamer\n', COLORS.cyan);
+  console.log("%cGaming Computer: ", COLORS.pink);
   gamingComputer.displayConfiguration();
 }
 

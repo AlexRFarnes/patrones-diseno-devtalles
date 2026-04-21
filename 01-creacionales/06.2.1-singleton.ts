@@ -9,12 +9,18 @@
  *
  * https://refactoring.guru/es/design-patterns/singleton
  */
-import { configManager } from './singleton/config-manager.ts';
 
-configManager.setConfig('apiURL', 'http://localhost:3000/api');
-configManager.setConfig('timeout', '5000');
-configManager.setConfig('apikey', 'ABC123');
+import { configManager } from "./singleton/config-manager.ts";
+import { COLORS } from "../helpers/colors.ts";
 
-console.log(configManager.getConfig('apiURL'));
-console.log(configManager.getConfig('timeout'));
-console.log(configManager.getConfig('apikey'));
+configManager.setConfig("apiUrl", "https://api.example.com");
+configManager.setConfig("apiKey", "1234567890");
+configManager.setConfig("apiSecret", "1234567890");
+configManager.setConfig("apiTimeout", "10000");
+configManager.setConfig("apiMaxRetries", "3");
+
+console.log(
+  "%cConfiguracion de la API: ",
+  COLORS.blue,
+  configManager.getAllConfig(),
+);

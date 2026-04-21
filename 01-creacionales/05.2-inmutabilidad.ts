@@ -15,7 +15,13 @@
  haciendo cambios en el puntaje, nivel y nombre del jugador.
  */
 
-import { COLORS } from '../helpers/colors.ts';
+import { COLORS } from "../helpers/colors.ts";
+
+interface PlayerProps {
+  name: string;
+  score: number;
+  level: number;
+}
 
 interface PlayerProps {
   name: string;
@@ -25,56 +31,44 @@ interface PlayerProps {
 
 // 1. Clase Player inmutable
 class Player {
-  readonly name: string;
-  readonly score: number;
-  readonly level: number;
-
-  constructor({ level, name, score }: PlayerProps) {
-    this.name = name;
-    this.score = score;
-    this.level = level;
-  }
+  constructor(readonly props: PlayerProps) {}
 
   // Método copyWith para crear una copia modificada del jugador
-  copyWith({ name, score, level }: Partial<Player>): Player {
+  copyWith({ name, score, level }: Partial<PlayerProps>): Player {
     return new Player({
-      level: level ?? this.level,
-      name: name ?? this.name,
-      score: score ?? this.score,
+      name: name ?? this.props.name,
+      score: score ?? this.props.score,
+      level: level ?? this.props.level,
     });
   }
 
   displayState(): void {
-    console.log(`\n%cJugador: ${this.name}`, COLORS.green);
-    console.log(`%cPuntaje: ${this.score}`, COLORS.yellow);
-    console.log(`%cNivel: ${this.level}`, COLORS.blue);
+    console.log(`\n%cJugador: ${this.props.name}`, COLORS.green);
+    console.log(`%cPuntaje: ${this.props.score}`, COLORS.yellow);
+    console.log(`%cNivel: ${this.props.level}`, COLORS.blue);
   }
 }
 
 // 2. Código Cliente para probar
 function main() {
   // Crear jugador inicial
-  let player = new Player({
-    level: 1,
-    name: 'Carlos',
-    score: 0,
-  });
-  console.log('Estado inicial:');
+  let player = new Player({ name: "Carlos", score: 0, level: 1 });
+  console.log("Estado inicial:");
   player.displayState();
 
   // Incrementar el puntaje
   player = player.copyWith({ score: 10 });
-  console.log('\nDespués de incrementar el puntaje:');
+  console.log("\nDespués de incrementar el puntaje:");
   player.displayState();
 
   // Subir de nivel
   player = player.copyWith({ level: 2 });
-  console.log('\nDespués de subir de nivel:');
+  console.log("\nDespués de subir de nivel:");
   player.displayState();
 
   // Cambiar el nombre del jugador
-  player = player.copyWith({ name: 'Carlos Pro' });
-  console.log('\nDespués de cambiar el nombre:');
+  player = player.copyWith({ name: "Carlos Pro" });
+  console.log("\nDespués de cambiar el nombre:");
   player.displayState();
 }
 

@@ -13,7 +13,7 @@
  *
  */
 
-import { COLORS } from '../helpers/colors.ts';
+import { COLORS } from "../helpers/colors.ts";
 
 interface Hamburger {
   prepare(): void;
@@ -21,28 +21,28 @@ interface Hamburger {
 
 class ChickenHamburger implements Hamburger {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cpollo', COLORS.yellow);
+    console.log(`Preparando una hamburguesa de %cpollo`, COLORS.yellow);
   }
 }
 
 class BeefHamburger implements Hamburger {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cres', COLORS.brown);
+    console.log(`Preparando una hamburguesa de %cres`, COLORS.orange);
   }
 }
 
-class BeanHamburger implements Hamburger {
+class FishHamburguer implements Hamburger {
   prepare(): void {
-    console.log('Preparando una hamburguesa de %cfrijol', COLORS.orange);
+    console.log(`Preparando una hamburguesa de %cpescado`, COLORS.green);
   }
 }
 
 abstract class Restaurant {
-  protected abstract createHamburger(): Hamburger;
+  abstract createHamburger(): Hamburger;
 
   orderHamburger(): void {
-    const hamburger = this.createHamburger();
-    hamburger.prepare();
+    const hamburguer = this.createHamburger();
+    hamburguer.prepare();
   }
 }
 
@@ -58,9 +58,9 @@ class BeefRestaurant extends Restaurant {
   }
 }
 
-class BeanRestaurant extends Restaurant {
+class FishRestaurant extends Restaurant {
   override createHamburger(): Hamburger {
-    return new BeanHamburger();
+    return new FishHamburguer();
   }
 }
 
@@ -68,24 +68,21 @@ function main() {
   let restaurant: Restaurant;
 
   const burgerType = prompt(
-    '¿Qué tipo de hamburguesa quieres? ( chicken/beef/bean )'
+    "¿Qué tipo de hamburguesa quieres? (chicken / beef / fish)",
   );
 
   switch (burgerType) {
-    case 'chicken':
+    case "chicken":
       restaurant = new ChickenRestaurant();
       break;
-
-    case 'beef':
+    case "beef":
       restaurant = new BeefRestaurant();
       break;
-
-    case 'bean':
-      restaurant = new BeanRestaurant();
+    case "fish":
+      restaurant = new FishRestaurant();
       break;
-
     default:
-      throw new Error('Opción no válida');
+      throw new Error("Opción no válida");
   }
 
   restaurant.orderHamburger();
