@@ -11,3 +11,87 @@
  *
  * https://refactoring.guru/es/design-patterns/decorator
  */
+
+import { COLORS } from "../helpers/colors.ts";
+
+interface Notification {
+  send(message: string): void;
+}
+
+class BasicNotification implements Notification {
+  send(message: string): void {
+    console.log(
+      `%cSending basic notification: %c${message}`,
+      COLORS.green,
+      COLORS.white,
+    );
+  }
+}
+
+// Decorator
+abstract class NotificationDecorator implements Notification {
+  protected notification: Notification;
+
+  constructor(notification: Notification) {
+    this.notification = notification;
+  }
+
+  send(message: string): void {
+    this.notification.send(message);
+  }
+}
+
+class EmailDecorator extends NotificationDecorator {
+  private sendEmail(message: string): void {
+    console.log(
+      `%cSending email notification: %c${message}`,
+      COLORS.blue,
+      COLORS.white,
+    );
+  }
+
+  override send(message: string): void {
+    super.send(message);
+    this.sendEmail(message);
+  }
+}
+
+class SMSDecorator extends NotificationDecorator {
+  private sendSMS(message: string): void {
+    console.log(
+      `%cSending SMS notification: %c${message}`,
+      COLORS.yellow,
+      COLORS.white,
+    );
+  }
+
+  override send(message: string): void {
+    super.send(message);
+    this.sendSMS(message);
+  }
+}
+
+class PushNotificationDecorator extends NotificationDecorator {
+  private sendPushNotification(message: string): void {
+    console.log(
+      `%cSending push notification: %c${message}`,
+      COLORS.purple,
+      COLORS.white,
+    );
+  }
+
+  override send(message: string): void {
+    super.send(message);
+    this.sendPushNotification(message);
+  }
+}
+
+function main() {
+  let notification: Notification = new BasicNotification();
+  notification = new EmailDecorator(notification);
+  notification = new SMSDecorator(notification);
+  notification = new PushNotificationDecorator(notification);
+  notification.send("Alerta de sistema");
+}
+
+main();
