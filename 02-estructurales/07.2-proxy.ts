@@ -34,13 +34,25 @@ class ConfidentialDocument implements Document {
 // 3. Clase Proxy - DocumentProxy
 class DocumentProxy implements Document {
   private document: Document;
+<<<<<<< HEAD
   private mustHaveRole: string[];
+=======
+  private mustHaveRoles: string[];
+
+  // TODO: private mustHaveRoles: string[]; //
+
+  constructor(document: Document, mustHaveRoles: string[] = []) {
+    this.document = document;
+    this.mustHaveRoles = mustHaveRoles;
+  }
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   constructor(document: Document, mustHaveRole: string[] = []) {
     this.document = document;
     this.mustHaveRole = mustHaveRole;
   }
   displayContent(user: User): void {
+<<<<<<< HEAD
     if (this.mustHaveRole.includes(user.getRole())) {
       this.document.displayContent(user);
       return;
@@ -48,6 +60,21 @@ class DocumentProxy implements Document {
     console.log(
       `%cAcceso denegado. ${user.getName()}, no tienes permisos suficientes para ver este documento.`,
       COLORS.red,
+=======
+    if (this.mustHaveRoles.includes(user.getRole())) {
+      this.document.displayContent(user);
+      return;
+    }
+
+    // if (user.getRole() === 'admin') {
+    //   this.document.displayContent(user);
+    //   return;
+    // }
+
+    console.log(
+      `%cAcceso denegado. ${user.getName()}, no tienes permisos suficientes para ver este documento.`,
+      COLORS.red
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     );
   }
 }
@@ -77,7 +104,11 @@ function main() {
   const confidentialDoc = new ConfidentialDocument(
     "Este es el contenido confidencial del documento.",
   );
+<<<<<<< HEAD
   const proxy = new DocumentProxy(confidentialDoc, ["admin", "editor"]);
+=======
+  const proxy = new DocumentProxy(confidentialDoc, ['admin']);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   const user1 = new User("Juan", "user");
   const user2 = new User("Ana", "admin");

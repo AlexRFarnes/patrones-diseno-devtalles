@@ -14,8 +14,11 @@
  *
  */
 
+<<<<<<< HEAD
 import { COLORS } from "../helpers/colors.ts";
 
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 interface FileSystemComponent {
   showDetails(indent?: string): void;
 }
@@ -28,6 +31,7 @@ class File implements FileSystemComponent {
   }
 
   showDetails(indent?: string): void {
+<<<<<<< HEAD
     console.log(`%c${indent}- Archivo: ${this.name}`, COLORS.green);
   }
 }
@@ -35,11 +39,21 @@ class File implements FileSystemComponent {
 class Directory implements FileSystemComponent {
   private name: string;
   private content: FileSystemComponent[] = [];
+=======
+    console.log(`${indent}- Archivo: ${this.name}`);
+  }
+}
+
+class Folder implements FileSystemComponent {
+  private name: string;
+  private contents: FileSystemComponent[] = [];
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   constructor(name: string) {
     this.name = name;
   }
 
+<<<<<<< HEAD
   showDetails(indent: string = ""): void {
     console.log(`%c${indent}+ Directorio: ${this.name}`, COLORS.blue);
     this.content.forEach(component => component.showDetails(indent + " "));
@@ -47,10 +61,20 @@ class Directory implements FileSystemComponent {
 
   add(component: FileSystemComponent): void {
     this.content.push(component);
+=======
+  add(component: FileSystemComponent) {
+    this.contents.push(component);
+  }
+
+  showDetails(indent: string = ''): void {
+    console.log(`${indent}+ Carpeta: ${this.name}`);
+    this.contents.forEach((component) => component.showDetails(indent + ' '));
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }
 
 function main() {
+<<<<<<< HEAD
   const file1 = new File("archivo1.txt");
   const file2 = new File("archivo2.txt");
   const file3 = new File("archivo3.txt");
@@ -75,6 +99,33 @@ function main() {
   root.add(file5);
 
   root.showDetails();
+=======
+  const file1 = new File('archivo1.txt');
+  const file2 = new File('archivo2.txt');
+  const file3 = new File('archivo3.txt');
+  const file4 = new File('archivo4.txt');
+
+  const folder1 = new Folder('Carpeta 1');
+  const folder5 = new Folder('Carpeta 5');
+
+  folder1.add(file1);
+  folder1.add(file2);
+
+  const folder2 = new Folder('Carpeta 2');
+  folder2.add(file3);
+
+  const folder3 = new Folder('Carpeta 3');
+  folder3.add(file4);
+  folder2.add(folder3);
+  folder2.add(folder5);
+
+  const rootFolder = new Folder('Carpeta ROOT');
+
+  rootFolder.add(folder1);
+  rootFolder.add(folder2);
+
+  rootFolder.showDetails();
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 }
 
 main();

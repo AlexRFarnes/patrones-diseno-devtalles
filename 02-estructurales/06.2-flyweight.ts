@@ -39,14 +39,21 @@ class BulletTypeFactory {
   private bulletTypes: Record<string, BulletType> = {};
 
   getBulletType(name: string, damage: number, color: string): BulletType {
+<<<<<<< HEAD
     // Si no existe el tipo de bala, crearlo y guardarlo en la lista de tipos de bala
     // Si existe el tipo de bala, devolverlo
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     const key = `${name}-${damage}-${color}`;
 
     if (!this.bulletTypes[key]) {
       console.log(`%cCreando una instancia ${key}`, COLORS.red);
       this.bulletTypes[key] = new BulletType(name, damage, color);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     return this.bulletTypes[key];
   }
 }

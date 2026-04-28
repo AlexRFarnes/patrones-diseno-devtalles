@@ -49,6 +49,18 @@ class MenuCategory implements MenuComponent {
 
   constructor(name: string) {
     this.name = name;
+<<<<<<< HEAD
+=======
+  }
+
+  add(item: MenuComponent | MenuComponent[]): void {
+    if (Array.isArray(item)) {
+      this.items.push(...item);
+      return;
+    }
+
+    this.items.push(item);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 
   add(item: MenuComponent | MenuComponent[]): void {
@@ -61,11 +73,16 @@ class MenuCategory implements MenuComponent {
 
   showDetails(indent: string = ""): void {
     console.log(`%c${indent}+ ${this.name}`, COLORS.blue);
+<<<<<<< HEAD
     this.items.forEach(item => item.showDetails(indent + " "));
+=======
+    this.items.forEach((item) => item.showDetails(indent + ' '));
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }
 
 // 4. Código Cliente para Probar el Composite
+<<<<<<< HEAD
 // Deben de ver la gráfica correcta del menú
 function main() {
   // Crear ítems individuales
@@ -76,6 +93,17 @@ function main() {
   const dessert = new MenuItem("Pastel de chocolate", 6.5);
   const coffee = new MenuItem("Café", 1.99);
   const tea = new MenuItem("Té", 1.99);
+=======
+function main() {
+  // Crear ítems individuales
+  const salad = new MenuItem('Ensalada', 5.99);
+  const soup = new MenuItem('Sopa de tomate', 4.99);
+  const steak = new MenuItem('Bistec', 15.99);
+  const soda = new MenuItem('Refresco', 2.5);
+  const dessert = new MenuItem('Pastel de chocolate', 6.5);
+  const coffee = new MenuItem('Café', 1.99);
+  const te = new MenuItem('Te', 0.99);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   // Crear categorías de menú y añadir ítems
   const appetizers = new MenuCategory("Entradas");
@@ -85,8 +113,22 @@ function main() {
   const mainCourse = new MenuCategory("Plato Principal");
   mainCourse.add(steak);
 
+<<<<<<< HEAD
   const coldDrinks = new MenuCategory("Bebidas Frias");
   coldDrinks.add(soda);
+=======
+  const beverages = new MenuCategory('Bebidas');
+
+  const hotBeverages = new MenuCategory('Calientes');
+  const coldBeverages = new MenuCategory('Frías');
+
+  coldBeverages.add(soda);
+
+  hotBeverages.add(coffee);
+  hotBeverages.add(te);
+
+  beverages.add([coldBeverages, hotBeverages]);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   const hotDrinks = new MenuCategory("Bebidas Calientes");
   hotDrinks.add(coffee);

@@ -10,7 +10,11 @@
  * https://refactoring.guru/es/design-patterns/bridge
  */
 
+<<<<<<< HEAD
 import { COLORS } from "../helpers/colors.ts";
+=======
+import { COLORS } from '../helpers/colors.ts';
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
 // 1. Interfaz NotificationChannel
 // Define el método `send`, que cada canal de comunicación implementará.
@@ -52,10 +56,17 @@ abstract class Notification {
   abstract addChannel(channel: NotificationChannel): void;
 }
 
+<<<<<<< HEAD
 class AlertNotificaion extends Notification {
   override notify(message: string): void {
     console.log("\n%cNotificación de Alerta:", COLORS.red);
     this.channels.forEach(channel => channel.send(message));
+=======
+class AlertNotification extends Notification {
+  override notify(message: string): void {
+    console.log('\n%cNotificación de alerta', COLORS.red);
+    this.channels.forEach((channel) => channel.send(message));
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 
   override addChannel(channel: NotificationChannel): void {
@@ -70,12 +81,24 @@ function main() {
     new PushNotificationChannel(),
     new PushNotificationChannel(),
     new PushNotificationChannel(),
+<<<<<<< HEAD
   ];
 
   const alert = new AlertNotificaion(channels);
 
   alert.notify("Se ha detectado un acceso no autorizado");
   console.log("\n");
+=======
+    new SMSChannel(),
+    new EmailChannel(),
+  ];
+
+  const alert = new AlertNotification(channels);
+
+  alert.notify('Alguien en frente de la casa');
+
+  console.log('\n');
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 }
 
 main();

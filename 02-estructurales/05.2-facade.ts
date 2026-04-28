@@ -58,20 +58,38 @@ class Memory {
 // 2. Clase Facade - ComputerFacade
 
 class ComputerFacade {
+<<<<<<< HEAD
+=======
+  // TODO: Agregar los atributos necesarios CPU, Memory y HardDrive
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   private cpu: CPU = new CPU();
   private memory: Memory = new Memory();
   private hardDrive: HardDrive = new HardDrive();
 
+<<<<<<< HEAD
   constructor() {}
+=======
+  // TODO: Agregar el constructor para instanciar los atributos CPU, Memory y HardDrive
+  constructor() // private cpu: CPU,
+  // private memory: Memory,
+  // private hardDrive: HardDrive
+  {}
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   startComputer(): void {
     console.log("\n%cIniciando la computadora...", COLORS.cyan);
 
+<<<<<<< HEAD
     // 1. Cargar el sistema operativo en la memoria - memory.load(0, hardDrive.read(0, 1024))
     this.memory.load(0, this.hardDrive.read(0, 1024));
     // 2. Saltar a la posición de memoria 0 - cpu.jump(0)
     this.cpu.jump(0);
     // 3. Ejecutar las instrucciones del CPU - cpu.execute()
+=======
+    // TODO: ejecutar las operaciones necesarias para encender la computadora
+    this.memory.load(0, this.hardDrive.read(0, 1024));
+    this.cpu.jump(0);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     this.cpu.execute();
 
     console.log("Computadora lista para usar.\n");
@@ -81,11 +99,17 @@ class ComputerFacade {
     console.log("\n%cApagando la computadora...", COLORS.red);
     console.log("Cerrando procesos y guardando datos...");
 
+<<<<<<< HEAD
     // 1. Detener las operaciones del CPU - cpu.stopOperations()
     this.cpu.stopOperations();
     // 2. Liberar la memoria - memory.free()
     this.memory.free();
     // 3. Cerrar el disco duro - hardDrive.close()
+=======
+    // TODO: ejecutar las operaciones necesarias para apagar la computadora
+    this.cpu.stopOperations();
+    this.memory.free();
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     this.hardDrive.close();
 
     console.log("Computadora apagada.\n");

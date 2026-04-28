@@ -49,6 +49,7 @@ abstract class Notification {
 
   abstract notify(message: string): void;
   abstract setChannel(channel: NotificationChannel): void;
+<<<<<<< HEAD
   protected channel: NotificationChannel;
 
   constructor(channel: NotificationChannel) {
@@ -57,47 +58,75 @@ abstract class Notification {
 
   abstract notify(message: string): void;
   abstract setChannel(channel: NotificationChannel): void;
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 }
 
 // 4. Clases Concretas de Notificaciones
 
 class AlertNotification extends Notification {
+<<<<<<< HEAD
   notify(message: string): void {
     console.log("\n%cNotificación de Alerta:", COLORS.red);
     this.channel.send(message);
   }
 
   setChannel(channel: NotificationChannel): void {
+=======
+  override notify(message: string): void {
+    console.log('\n%cNotificación de Alerta:', COLORS.red);
+    this.channel.send(message);
+  }
+
+  override setChannel(channel: NotificationChannel): void {
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     this.channel = channel;
   }
 }
 
 class ReminderNotification extends Notification {
   notify(message: string): void {
+<<<<<<< HEAD
     console.log("\n%cNotificación de Recordatorio:", COLORS.blue);
+=======
+    console.log('\n%cNotificación de Recordatorio:', COLORS.blue);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     this.channel.send(message);
   }
 
   setChannel(channel: NotificationChannel): void {
     this.channel = channel;
+<<<<<<< HEAD
     this.channel = channel;
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }
 
 class PushNotification extends Notification {
   override notify(message: string): void {
+<<<<<<< HEAD
     console.log("\n%cNotificación de Push:", COLORS.green);
+=======
+    console.log('\n%cNotificación de Push:', COLORS.green);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     this.channel.send(message);
   }
 
   override setChannel(channel: NotificationChannel): void {
     this.channel = channel;
+<<<<<<< HEAD
     this.channel = channel;
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }
 
 // 5. Código Cliente para Probar el Bridge
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 // Deben de implementar todo lo que haga falta en las clases anteriores
 function main() {
   // Crear una notificación de alerta usando el canal de correo electrónico

@@ -7,6 +7,7 @@ import { COLORS } from "../../helpers/colors.ts";
 interface ILoggerAdapter {
   file: string;
 
+<<<<<<< HEAD
   writeLog(message: string): void;
   writeError(message: string): void;
   writeWarning(message: string): void;
@@ -14,6 +15,14 @@ interface ILoggerAdapter {
 }
 
 export class LoggerAdapter implements ILoggerAdapter {
+=======
+  writeLog: (msg: string) => void;
+  writeWarning: (msg: string) => void;
+  writeError: (msg: string) => void;
+}
+
+export class DenoLoggerAdapter implements ILoggerAdapter {
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   public file: string;
   private logger = new Logger();
 
@@ -21,6 +30,7 @@ export class LoggerAdapter implements ILoggerAdapter {
     this.file = file;
   }
 
+<<<<<<< HEAD
   writeLog(message: string): void {
     this.logger.info(`[${this.file}] ${message}`);
   }
@@ -35,5 +45,17 @@ export class LoggerAdapter implements ILoggerAdapter {
 
   writeInfo(message: string): void {
     this.logger.info(`[${this.file}] ${message}`);
+=======
+  writeLog(msg: string) {
+    this.logger.info(`[${this.file} Log] ${msg}`);
+  }
+
+  writeWarning(msg: string) {
+    this.logger.warn(`[${this.file} warning] %c${msg}`);
+  }
+
+  writeError(msg: string) {
+    this.logger.error(`[${this.file} error] %c${msg}`);
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }

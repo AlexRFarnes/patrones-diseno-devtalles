@@ -20,10 +20,17 @@ interface Character {
 
 // 2. Clase BasicCharacter
 // Representa un personaje básico sin accesorios
+<<<<<<< HEAD
 class BasicCharacter implements Character {
   // getDescription: return 'Personaje básico';
   getDescription(): string {
     return "Personaje básico";
+=======
+// TODO: Implementar la interfaz Character
+class BasicCharacter implements Character {
+  getDescription(): string {
+    return 'Personaje básico';
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 
   getStats(): { attack: number; defense: number } {
@@ -35,11 +42,15 @@ class BasicCharacter implements Character {
 // Actúa como base para los decoradores específicos
 abstract class CharacterDecorator implements Character {
   protected character: Character;
+<<<<<<< HEAD
   protected character: Character;
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
   constructor(character: Character) {
     this.character = character;
   }
+<<<<<<< HEAD
   constructor(character: Character) {
     this.character = character;
   }
@@ -47,11 +58,19 @@ abstract class CharacterDecorator implements Character {
   getDescription(): string {
     return this.character.getDescription();
     return this.character.getDescription();
+=======
+
+  getDescription(): string {
+    return this.character.getDescription();
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 
   getStats(): { attack: number; defense: number } {
     return this.character.getStats();
+<<<<<<< HEAD
     return this.character.getStats();
+=======
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 }
 
@@ -97,7 +116,11 @@ class SwordDecorator extends CharacterDecorator {
 // class RingDecorator ...
 class RingDecorator extends CharacterDecorator {
   override getDescription(): string {
+<<<<<<< HEAD
     return this.character.getDescription() + "\n * con Anillo";
+=======
+    return this.character.getDescription() + '\n * con Anillo';
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
   }
 
   override getStats(): { attack: number; defense: number } {

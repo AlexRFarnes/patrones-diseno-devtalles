@@ -12,7 +12,11 @@
  * https://refactoring.guru/es/design-patterns/decorator
  */
 
+<<<<<<< HEAD
 import { COLORS } from "../helpers/colors.ts";
+=======
+import { COLORS } from '../helpers/colors.ts';
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 
 interface Notification {
   send(message: string): void;
@@ -21,14 +25,24 @@ interface Notification {
 class BasicNotification implements Notification {
   send(message: string): void {
     console.log(
+<<<<<<< HEAD
       `%cSending basic notification: %c${message}`,
       COLORS.green,
       COLORS.white,
+=======
+      `%cEnviando notificación básica: %c${message}`,
+      COLORS.blue,
+      COLORS.white
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     );
   }
 }
 
+<<<<<<< HEAD
 // Decorator
+=======
+// Clase decoradora
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 abstract class NotificationDecorator implements Notification {
   protected notification: Notification;
 
@@ -41,12 +55,22 @@ abstract class NotificationDecorator implements Notification {
   }
 }
 
+<<<<<<< HEAD
 class EmailDecorator extends NotificationDecorator {
   private sendEmail(message: string): void {
     console.log(
       `%cSending email notification: %c${message}`,
       COLORS.blue,
       COLORS.white,
+=======
+// Crear diferentes decoradores
+class EmailDecorator extends NotificationDecorator {
+  private sendEmail(message: string) {
+    console.log(
+      `%cEnviando notificación por correo electrónico:%c${message}`,
+      COLORS.green,
+      COLORS.white
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     );
   }
 
@@ -57,11 +81,19 @@ class EmailDecorator extends NotificationDecorator {
 }
 
 class SMSDecorator extends NotificationDecorator {
+<<<<<<< HEAD
   private sendSMS(message: string): void {
     console.log(
       `%cSending SMS notification: %c${message}`,
       COLORS.yellow,
       COLORS.white,
+=======
+  private sendSMS(message: string) {
+    console.log(
+      `%cEnviando notificación por SMS: %c${message}`,
+      COLORS.red,
+      COLORS.white
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
     );
   }
 
@@ -71,6 +103,7 @@ class SMSDecorator extends NotificationDecorator {
   }
 }
 
+<<<<<<< HEAD
 class PushNotificationDecorator extends NotificationDecorator {
   private sendPushNotification(message: string): void {
     console.log(
@@ -92,6 +125,15 @@ function main() {
   notification = new SMSDecorator(notification);
   notification = new PushNotificationDecorator(notification);
   notification.send("Alerta de sistema");
+=======
+function main() {
+  let notification: Notification = new BasicNotification();
+
+  notification = new EmailDecorator(notification);
+  notification = new SMSDecorator(notification);
+
+  notification.send('Alerta de sistema!');
+>>>>>>> 39c5bdfe6437dd88ffe1b6c7d069418ce4733266
 }
 
 main();
