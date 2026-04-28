@@ -35,16 +35,22 @@ class BasicCharacter implements Character {
 // Actúa como base para los decoradores específicos
 abstract class CharacterDecorator implements Character {
   protected character: Character;
+  protected character: Character;
 
+  constructor(character: Character) {
+    this.character = character;
+  }
   constructor(character: Character) {
     this.character = character;
   }
 
   getDescription(): string {
     return this.character.getDescription();
+    return this.character.getDescription();
   }
 
   getStats(): { attack: number; defense: number } {
+    return this.character.getStats();
     return this.character.getStats();
   }
 }

@@ -49,6 +49,14 @@ abstract class Notification {
 
   abstract notify(message: string): void;
   abstract setChannel(channel: NotificationChannel): void;
+  protected channel: NotificationChannel;
+
+  constructor(channel: NotificationChannel) {
+    this.channel = channel;
+  }
+
+  abstract notify(message: string): void;
+  abstract setChannel(channel: NotificationChannel): void;
 }
 
 // 4. Clases Concretas de Notificaciones
@@ -72,6 +80,7 @@ class ReminderNotification extends Notification {
 
   setChannel(channel: NotificationChannel): void {
     this.channel = channel;
+    this.channel = channel;
   }
 }
 
@@ -82,6 +91,7 @@ class PushNotification extends Notification {
   }
 
   override setChannel(channel: NotificationChannel): void {
+    this.channel = channel;
     this.channel = channel;
   }
 }
