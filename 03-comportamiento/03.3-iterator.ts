@@ -28,11 +28,59 @@ class CardCollection {
     this.cards.push(card);
   }
 
+  getCardAt(index: number): Card | null {
+    if (index >= 0 && index < this.cards.length) {
+      return this.cards[index];
+    }
+    return null;
+  }
+
+  getLength(): number {
+    return this.cards.length;
+  }
+
   //TODO: Implementación del iterador usando Symbol.iterator
   // Symbol.iterator (): IterableIterator<Card>
+  *[Symbol.iterator](): IterableIterator<Card> {
+    yield* this.cards;
+  }
 
   // TODO: Implementación del iterador usando Generadores
-  // *getCard(): IterableIterator<Card>
+  *getCard(): IterableIterator<Card> {
+    for (const card of this.cards) {
+      yield card;
+    }
+  }
+}
+
+interface Iterator<T> {
+  next(): T | null;
+  hasNext(): boolean;
+  current(): T | null;
+}
+
+class CardIterator implements Iterator<Card> {
+  private collection: CardCollection;
+  private position: number = 0;
+
+  constructor(collection: CardCollection) {
+    this.collection = collection;
+  }
+
+  next(): Card | null {
+    if (this.hasNext()) {
+      return this.collection.getCardAt(this.position++);
+    }
+    return null;
+  }
+
+  hasNext(): boolean {
+    return this.position < this.collection.getLength();
+  }
+
+  current(): Card | null {
+    return this.collection.getCardAt(this.position);
+  }
 }
 
 // Código Cliente para probar el iterador
@@ -47,9 +95,23 @@ function main(): void {
   deck.addCard(new Card("Jota de Corazones", 11));
 
   // Recorrer la colección en orden usando for...of
-  console.log("Recorriendo la colección de cartas:");
+  console.log("Recorriendo la colección de cartas con Symbol.iterator");
   for (const card of deck) {
     console.log(`Carta: ${card.name}, Valor: ${card.value}`);
+  }
+
+  console.log("Recorriendo la colección de cartas con el generador getCard");
+  for (const card of deck.getCard()) {
+    console.log(`Carta: ${card.name}, Valor: ${card.value}`);
+  }
+
+  console.log("Recorriendo la colección de cartas con el iterador");
+  const iterator = new CardIterator(deck);
+  while (iterator.hasNext()) {
+    const card = iterator.next();
+    if (card) {
+      console.log(`Carta: ${card.name}, Valor: ${card.value}`);
+    }
   }
 }
 
